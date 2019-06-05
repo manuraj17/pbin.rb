@@ -1,4 +1,4 @@
-require_relative "version"
+require_relative "ascii"
 require_relative "pb_servlet"
 
 module Pbin
@@ -6,23 +6,11 @@ module Pbin
     attr_accessor :server
 
     def initialize
-      puts name
-      puts " "*35 + VERSION
+      puts Ascii.name
+      puts Ascii.version
 
       Dir.mkdir(STORENAME) unless File.exists?("#{STORENAME}")
       @server = Server.new
-    end
-
-    def name
-      <<-'EOF'
- ________  ________  ___  ________      
-|\   __  \|\   __  \|\  \|\   ___  \    
-\ \  \|\  \ \  \|\ /\ \  \ \  \\ \  \   
- \ \   ____\ \   __  \ \  \ \  \\ \  \  
-  \ \  \___|\ \  \|\  \ \  \ \  \\ \  \ 
-   \ \__\    \ \_______\ \__\ \__\\ \__\
-    \|__|     \|_______|\|__|\|__| \|__|
-      EOF
     end
 
     def start

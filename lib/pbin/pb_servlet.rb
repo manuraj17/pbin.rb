@@ -1,6 +1,7 @@
 require 'webrick'
 require_relative 'slug'
 require_relative 'constants'
+require_relative 'ascii'
 
 module Pbin
   class PBServerlet < WEBrick::HTTPServlet::AbstractServlet
@@ -8,11 +9,15 @@ module Pbin
       dirname = request.path.split('/').last
       dirpath = "#{STORENAME}/#{dirname}"
 
-      content = File.read("#{dirpath}/index.txt")
+      if dirname.nil?
+        response.body = Ascii.name + Ascii.version
+      else
+        content = File.read("#{dirpath}/index.txt")
+        response.body = content
+      end
 
       response.status = 200
       response['Content-Type'] = 'text/plain'
-      response.body = content
     end
 
     def do_POST(request, response)
