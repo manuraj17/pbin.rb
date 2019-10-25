@@ -12,12 +12,16 @@ module Pbin
       if dirname.nil?
         response.body = Ascii.name + Ascii.version
       else
-        content = File.read("#{dirpath}/index.txt")
-        response.body = content
+        # If the paste file is not found then return 404 with empty response
+        begin
+          content = File.read("#{dirpath}/index.txt")
+          response.status = 200
+          response.body = content
+        rescue Errno::ENOENT
+          response.status = 404
+          response.body = ""
+        end
       end
-
-      response.status = 200
-      response['Content-Type'] = 'text/plain'
     end
 
     def do_POST(request, response)
