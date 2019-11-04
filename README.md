@@ -32,6 +32,13 @@ The logs are stored in two files, `access.log` for all the request logs and
 `server.log` for the application server logs.
 
 
+Create pastes from the command line using
+`curl -d "p=makandra" -X POST http://localhost:8080/`
+
+The paste slug will be returned as response
+
+Query the pastes with slug in the format `http://<address>/<slug>`
+
 ## Pastes
 
 The pastes are stored inside a folder called `store`. The application creates
