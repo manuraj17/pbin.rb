@@ -6,8 +6,8 @@ require "pbin/version"
 Gem::Specification.new do |spec|
   spec.name          = "pbin"
   spec.version       = Pbin::VERSION
-  spec.authors       = ["manuraj17"]
-  spec.email         = ["manu.elayath@gmail.com"]
+  spec.authors       = ["Manu Raj"]
+  spec.email         = ["pbin@manuraj.me"]
 
   spec.summary       = %q{Minimal pastebin server.}
   spec.description   = %q{A minimal pastebin server for personal needs.}
